@@ -1,3 +1,4 @@
+import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler
 
@@ -30,5 +31,8 @@ async def main():
     await application.run_polling()
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    if not asyncio.get_event_loop().is_running():
+        asyncio.run(main())
+    else:
+        loop = asyncio.get_event_loop()
+        loop.create_task(main())
