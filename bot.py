@@ -1,10 +1,10 @@
-import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")
+# Замените на ваш токен
+TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
-# Функция, которая будет отправлять сообщение о техническом обслуживании
+# Функция, которая отправляет сообщение о техническом обслуживании
 async def maintenance_message(update: Update, context):
     await update.message.reply_text("Извините, сейчас ведутся технические работы. Пожалуйста, попробуйте позже.")
 
