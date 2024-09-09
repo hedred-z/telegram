@@ -1,11 +1,9 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import Updater, CommandHandler, CallbackContext
 
-# Установите ваш токен напрямую
 TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
-# Функция, которая отправляет сообщение о представлении игры
-async def welcome_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+def start(update: Update, context: CallbackContext) -> None:
     welcome_text = (
         "Welcome to Vortix🌪️! 🎉🎉🎉\n\n"
         "At Vortix, we’re revolutionizing gaming with an exciting new experience in Telegram. Dive into our world where you can:\n\n"
@@ -17,15 +15,16 @@ async def welcome_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         "[Launch Vortix🌪️](#) \n"
         "[Join our Channel](https://t.me/VortixCrypto)"
     )
-    await update.message.reply_text(welcome_text, parse_mode='MarkdownV2')
+    update.message.reply_text(welcome_text, parse_mode='Markdown')
+
+def main():
+    updater = Updater(token=TOKEN)
+    dispatcher = updater.dispatcher
+
+    dispatcher.add_handler(CommandHandler('start', start))
+
+    updater.start_polling()
+    updater.idle()
 
 if __name__ == '__main__':
-    # Инициализация бота
-    application = ApplicationBuilder().token(TOKEN).build()
-
-    # Обработчик команды /start и любых других команд
-    start_handler = CommandHandler('start', welcome_message)
-    application.add_handler(start_handler)
-
-    # Запуск бота
-    application.run_polling()
+    main()
