@@ -26,12 +26,8 @@ async def main():
     # Обработчик команды /start
     application.add_handler(CommandHandler('start', start))
 
-    # Инициализация приложения
-    await application.initialize()
-
-    # Запуск бота
-    await application.start()
-    await application.stop()
+    # Запуск polling
+    await application.run_polling()
 
 if __name__ == '__main__':
     import asyncio
