@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x' # Укажите версию Python, соответствующую вашему проекту
+        python-version: '3.9' # Укажите версию Python, соответствующую вашему проекту
 
     - name: Install dependencies
       run: |
@@ -26,4 +26,3 @@ jobs:
     - name: Run bot
       run: |
         python bot.py
-        
