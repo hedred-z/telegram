@@ -23,8 +23,11 @@ async def main():
     # Инициализация бота
     application = Application.builder().token(TOKEN).build()
 
-    # Добавление обработчика для команды /start
+    # Обработчик команды /start
     application.add_handler(CommandHandler('start', start))
+
+    # Инициализация приложения
+    await application.initialize()
 
     # Запуск бота
     await application.start()
