@@ -1,11 +1,10 @@
-import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler
 
 TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
 # Обработчик команды /start
-async def start(update: Update, context):
+def start(update: Update, context):
     welcome_text = (
         "Welcome to Vortix🌪️! 🎉🎉🎉\n\n"
         "At Vortix, we’re revolutionizing gaming with an exciting new experience in Telegram. Dive into our world where you can:\n\n"
@@ -17,22 +16,18 @@ async def start(update: Update, context):
         "[Launch Vortix🌪️](#) \n"
         "[Join our Channel](https://t.me/VortixCrypto)"
     )
-    await update.message.reply_text(welcome_text, parse_mode='Markdown')
+    update.message.reply_text(welcome_text, parse_mode='Markdown')
 
 # Основная функция
-async def main():
+def main():
     # Инициализация бота
     application = Application.builder().token(TOKEN).build()
 
     # Обработчик команды /start
     application.add_handler(CommandHandler('start', start))
 
-    # Запуск polling
-    await application.run_polling()
+    # Запуск polling в синхронном режиме
+    application.run_polling()
 
 if __name__ == '__main__':
-    if not asyncio.get_event_loop().is_running():
-        asyncio.run(main())
-    else:
-        loop = asyncio.get_event_loop()
-        loop.create_task(main())
+    main()
