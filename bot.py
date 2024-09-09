@@ -27,8 +27,8 @@ async def main():
     application.add_handler(CommandHandler('start', start))
 
     # Запуск бота
-    await application.start_polling()
-    await application.idle()
+    await application.start()
+    await application.stop()
 
 if __name__ == '__main__':
     import asyncio
