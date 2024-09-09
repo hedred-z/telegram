@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler
 
-# Замените на ваш токен
+# Установите ваш токен напрямую
 TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
 # Функция, которая отправляет сообщение о техническом обслуживании
