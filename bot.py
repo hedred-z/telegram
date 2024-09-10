@@ -3,8 +3,8 @@ from telegram.ext import Application, CommandHandler
 
 TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
-# Обработчик команды /start
-def start(update: Update, context):
+# Асинхронный обработчик команды /start
+async def start(update: Update, context):
     welcome_text = (
         "Welcome to Vortix🌪️! 🎉🎉🎉\n\n"
         "At Vortix, we’re revolutionizing gaming with an exciting new experience in Telegram. Dive into our world where you can:\n\n"
@@ -16,7 +16,7 @@ def start(update: Update, context):
         "[Launch Vortix🌪️](#) \n"
         "[Join our Channel](https://t.me/VortixCrypto)"
     )
-    update.message.reply_text(welcome_text, parse_mode='Markdown')
+    await update.message.reply_text(welcome_text, parse_mode='Markdown')
 
 # Основная функция
 def main():
