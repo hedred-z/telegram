@@ -1,11 +1,11 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CommandHandler, ContextTypes
 from telegram.constants import ParseMode
 
 TOKEN = '7078975365:AAGyaxbZ74ozc1PLQy9tRQNG-vtfZuN2brM'
 
-async def start(update: Update, context):
-    chat_id = update.message.chat_id
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    chat_id = update.message.chat.id
     image_url = 'https://example.com/image.jpg'
     welcome_text = (
         "Welcome to Vortix🌪️\n\n"
@@ -30,11 +30,10 @@ async def start(update: Update, context):
         reply_markup=reply_markup
     )
 
-async def main():
+async def main() -> None:
     application = Application.builder().token(TOKEN).build()
     application.add_handler(CommandHandler('start', start))
-    await application.start()
-    await application.idle()
+    await application.run_polling()
 
 if __name__ == '__main__':
     import asyncio
