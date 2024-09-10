@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 * * * *'  # Запуск каждые 6 часов
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 360  # Максимальное время выполнения 6 часов
 
     steps:
     - name: Checkout code
